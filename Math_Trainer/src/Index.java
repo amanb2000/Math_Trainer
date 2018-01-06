@@ -1,21 +1,15 @@
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JTextField;
+
 
 public class Index extends JFrame implements ActionListener {
 	
@@ -29,7 +23,7 @@ public class Index extends JFrame implements ActionListener {
 		new Index().setVisible(true);//setting the jFrame to being visible
 	}
 
-	/*Declaring variables that are needed in both actionlistener
+	/*Declaring variables that are needed in both action listener
 	 * and Index class
 	 */
 	
@@ -45,7 +39,7 @@ public class Index extends JFrame implements ActionListener {
 		
 		
 		/*Creating all labels, buttons, and menus*/
-		JLabel welcome = new JLabel("<html><center><h1>Welcome!</h1><br>Please select"
+		JLabel welcome = new JLabel("<html><center><h1>Welcome Home!</h1><br>Please select"
 				+ " the skill you want to practice.</center></html>");//making welcome label
 		
 		String[] unitChoices = { "--Select--", "Survival Kit","Fractions", "Algebra 1",
@@ -56,7 +50,7 @@ public class Index extends JFrame implements ActionListener {
 	    
 	    JButton goButton = new JButton("Go");//Button for submitting and getting
 	    								  //to a skill
-//	    goButton.setPreferredSize(new Dimension(50, 40));
+	    goButton.setPreferredSize(new Dimension(50, 40));
 	    
 	    goButton.addActionListener(this);
 	    goButton.setActionCommand("Go");
