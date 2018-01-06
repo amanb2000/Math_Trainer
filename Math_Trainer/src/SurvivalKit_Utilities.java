@@ -1,4 +1,3 @@
-
 public class SurvivalKit_Utilities {
 	int abc;
 	public SurvivalKit_Utilities() {
