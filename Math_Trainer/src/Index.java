@@ -1,8 +1,12 @@
+import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.GroupLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -36,13 +40,13 @@ public class Index extends JFrame implements ActionListener {
 		setSize(600, 800);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLayout(new GridBagLayout());//rows, columns
+		GridBagConstraints gbc = new GridBagConstraints();
 		
-//		setLayout(new BoxLayout(this, EXIT_ON_CLOSE));
-		setLayout(new GridLayout()); 
 		
 		/*Creating all labels, buttons, and menus*/
 		JLabel welcome = new JLabel("<html><center><h1>Welcome!</h1><br>Please select"
-				+ " the skill you want to practice.</center</html>");//making welcome label
+				+ " the skill you want to practice.</center></html>");//making welcome label
 		
 		String[] unitChoices = { "--Select--", "Survival Kit","Fractions", "Algebra 1",
 				"Exponents","Algebra 2","Algebra 3"};
@@ -52,19 +56,41 @@ public class Index extends JFrame implements ActionListener {
 	    
 	    JButton goButton = new JButton("Go");//Button for submitting and getting
 	    								  //to a skill
+//	    goButton.setPreferredSize(new Dimension(50, 40));
+	    
 	    goButton.addActionListener(this);
 	    goButton.setActionCommand("Go");
 	    
-	    JLabel progress = new JLabel("Progress: Survival Kit 0/5");
+	    JLabel progress = new JLabel("<html><h3><center>Progress</center></h3><p>Survival Kit 0/5,</p> <p>Fractions: 0/5,</p><p>Algebra 1: 0/5,</p>"
+	    		+ "<p>Exponents: 0/5, </p><p>Algebra 2: 0/5, </p><p>Algebra 3: 0/5</p></html>");
+		
+		/*Adding all labels, buttons, and menus to the jFrame*/
+	    gbc.insets = new Insets(5, 5, 5, 5);//top, left, bottom, right
+	    gbc.anchor = GridBagConstraints.NORTH;
 	    
+	    gbc.weightx = 1;
+	    gbc.weighty = 1;
+	    
+	    gbc.gridx = 1;
+	    gbc.gridy = 0;
+	    gbc.gridwidth = 2;
+		add(welcome, gbc);
 		
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		add(progress, gbc);
 		
-		/*Adding all labels, buttons, and menus*/
-		add(welcome);
-		add(unitsMenu);
-		add(goButton);
-		add(progress);
+		gbc.gridwidth = 1;
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		add(unitsMenu, gbc);
+		
+		gbc.gridwidth = 2;
+		gbc.gridx = 1;
+		gbc.gridy = 3;
+		add(goButton, gbc);
 	}
+	
 	
 	
 	
