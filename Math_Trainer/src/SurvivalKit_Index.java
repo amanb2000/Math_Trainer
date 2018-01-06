@@ -3,6 +3,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
@@ -29,6 +30,15 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 	JLabel selectReminder;
 	JLabel progress;
 	
+//	String[] skills = {"Unselected", "Addition/Subtraction", 
+//			"Multiplication/Division", "Negatives", 
+//			"BEDMAS", "Translating Expressions"};
+	String[] skills = {"--Unselected--", "Addition/Subtraction", 
+			"Multiplication/Division", "Negatives", 
+			"BEDMAS"};
+	
+	int bedmasNum = (int)(Math.random()*16);
+	
 	String[] qa = {"", ""};
 
 	public SurvivalKit_Index() {
@@ -38,10 +48,6 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new GridBagLayout());//rows, columns
 		GridBagConstraints gbc = new GridBagConstraints();
-		
-		String[] skills = {"Unselected", "Addition/Subtraction", 
-				"Multiplication/Division", "Negatives", 
-				"BEDMAS", "Translating Expressions"};
 		
 		skillMenu = new JComboBox<String>(skills);
 		skillMenu.setVisible(true);
@@ -117,16 +123,28 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 			if(!choice.equals("Unselected")) {
 				if( ans.getText().equals(qa[1]) ) {
 					System.out.println("CORRECT!");
+					
 					sessionScore[curUnit]++;
+					if(sessionScore[curUnit] < 0) {
+						sessionScore[curUnit] = 0;
+					}
 				}
 				else {
 					System.out.println("INCORRECT!");
 					sessionScore[curUnit]--;
+					if(sessionScore[curUnit] < 0) {
+						sessionScore[curUnit] = 0;
+					}
 				}
 				
 				ans.setText("");
 				
-				updateQuestion();
+				try {
+					updateQuestion();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				updateAllFields();
 			}
@@ -145,18 +163,26 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 			else if(choice.equals("Negatives")) {
 				curUnit = 3;
 			}
+			else if(choice.equals("BEDMAS")) {
+				curUnit = 4;
+			}
 			else {
 				curUnit = 0;
 			}
 			
-			updateQuestion();
+			try {
+				updateQuestion();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			updateAllFields();
 			System.out.println("QA: " + qa[0] + ", " + qa[1]);
 			
 		}
 	}
 	
-	public void updateQuestion() {
+	public void updateQuestion() throws FileNotFoundException {
 //		if(choice.equals("Addition/Subtraction")) {
 		if(curUnit == 1) {
 			qa = SurvivalKit_Utilities.getAdditionSubtraction();
@@ -167,16 +193,33 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 		else if(curUnit == 3) {
 			qa = SurvivalKit_Utilities.getNegative();
 		}
+		else if(curUnit == 4) {
+			qa = SurvivalKit_Utilities.getBEDMAS(bedmasNum);
+			bedmasNum ++;
+		}
 		else {
-			qa[0] = "";
-			qa[1] = "";
+			qa[0] = "<<Unit not found>>";
+			qa[1] = "<<Unit not found>>";
 			curUnit = 0;
 		}
 	}
 	//for updating the text of all buttons/fields based on local variables.
 	public void updateAllFields() {
 		prompt.setText("Question: What is " + qa[0] + "?");
-		progress.setText("Progress: Addition/Subtraction: "+sessionScore[curUnit]+"/5");
+		String progText = "<html>";
+		
+		for(int i = 1; i < skills.length; i++) {
+			progText += "<p>";
+			progText += "Progress on "+skills[i]+": "+sessionScore[i]+"/5";
+			if(sessionScore[i] >= 5) {
+				progText += " :D";
+			}
+			progText += "</p>";
+		}
+		
+		progText += "</html>";
+		
+		progress.setText(progText);
 	}
 
 }

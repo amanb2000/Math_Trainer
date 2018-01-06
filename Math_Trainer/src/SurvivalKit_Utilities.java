@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
 public class SurvivalKit_Utilities {
 	int abc;
 	public SurvivalKit_Utilities() {
@@ -67,21 +70,11 @@ public class SurvivalKit_Utilities {
 		
 		return retVal;
 	}
-	public static String[] getBEDMAS() {
-		String[] retVal = new String[2];
-		int a = (int)(Math.random()*10)+1;
-		int b = (int)(Math.random()*10)+1;
-		double plusminus = (Math.random())-0.5;
-		if(plusminus > 0) {
-			retVal[0] = a + " + " + b;
-			retVal[1] = ""+(a+b);
-		}
-		else {
-			retVal[0] = a + " - " + b;
-			retVal[1] = ""+(a-b);
-		}
+	public static String[] getBEDMAS(int qNum) throws FileNotFoundException {
+		ArrayList<String[]> qas = Utilities.getListFromCSV("BEDMAS_QUESTIONS.csv");
+		qNum = qNum % (qas.size()-1);
 		
-		return retVal;
+		return qas.get(qNum);
 	}
 	
 }

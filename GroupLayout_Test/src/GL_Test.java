@@ -20,7 +20,7 @@ public class GL_Test extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		JButton button = new JButton("Hello");
-		add(button);
+		add(button); 
 	}
 	
 	@Override
