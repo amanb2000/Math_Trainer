@@ -2,9 +2,9 @@
 Basic math training program created by Aman Bhargava and the TCS Academic Support Department. This is meant to allow students to develop their skills from basic math to the Ontario grade 10 math level.
 
 
-#2017 October 18 Notes - Harding Meeting (DOJO Planning)
+# 2017 October 18 Notes - Harding Meeting (DOJO Planning)
 
-###Units in DOJO
+### Units in DOJO
 
 * 'Survival Kit' - Integers
 	* Addition/subtraction
@@ -45,7 +45,7 @@ Basic math training program created by Aman Bhargava and the TCS Academic Suppor
 * Algebra 3 - DOJO 1.0
 	* Even more complex algebra (quadratics)
 
-###Functionality (MVP, Survival Kit First)
+### Functionality (MVP, Survival Kit First)
 
 * Create a framework for unit/part of tree to be selected
 * Create methods for getting questions and answers
