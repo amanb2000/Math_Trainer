@@ -46,6 +46,7 @@ Basic math training program created by Aman Bhargava and the TCS Academic Suppor
 		- Negative Exponent
 		- Power of a Power
 		- Power of Zero
+	* `Fractional Exponents`
 
 * Algebra 2 - DOJO 1.0
 	* More complex algebra (linear equations)

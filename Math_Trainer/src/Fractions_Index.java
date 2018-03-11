@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class SurvivalKit_Index extends JFrame implements ActionListener {
+public class Fractions_Index extends JFrame implements ActionListener {
 
 	/**
 	 * 
@@ -21,7 +21,7 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new SurvivalKit_Index().setVisible(true);
+		new Fractions_Index().setVisible(true);
 	}
 	
 	JComboBox<String> skillMenu;
@@ -33,16 +33,16 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 //	String[] skills = {"Unselected", "Addition/Subtraction", 
 //			"Multiplication/Division", "Negatives", 
 //			"BEDMAS", "Translating Expressions"};
-	String[] skills = {"--Unselected--", "Addition/Subtraction", 
-			"Multiplication/Division", "Negatives", 
-			"BEDMAS"};
+	String[] skills = {"--Unselected--", "Basic Addition/Subtraction", "LCM", "GCF", "Addition/Subtraction", 
+			"Multiplication", "Division"
+	};
 	
 	int bedmasNum = (int)(Math.random()*16);
 	
 	String[] qa = {"", ""};
 
-	public SurvivalKit_Index() {
-		super("SURVIVAL KIT - INDEX");
+	public Fractions_Index() {
+		super("FRACTIONS - INDEX");
 		setSize(600, 800);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -54,7 +54,7 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 		skillMenu.addActionListener(this);
 		
 		/*Creating all labels, buttons, and menus*/
-		JLabel title = new JLabel("<html><center><h1>Survival Kit</h1></html>");
+		JLabel title = new JLabel("<html><center><h1>Fractions</h1></html>");
 		progress = new JLabel("Progress on " + skills[curUnit] + ": "+sessionScore[curUnit]+"/5");
 		
 		prompt = new JLabel("<Question comes here>");//the question
@@ -167,7 +167,20 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 			
 		}
 	}
-	
+	/**
+	 * 
+	 */
+	public void updateCurUnit() {
+		for(int i = 0; i < skills.length; i++) {
+			if(choice.equals(skills[i])) {
+				curUnit = i;
+			}
+		}
+	}
+	/**
+	 * TODO: Update the get expressions
+	 * @throws FileNotFoundException
+	 */
 	public void updateQuestion() throws FileNotFoundException {
 //		if(choice.equals("Addition/Subtraction")) {
 		if(curUnit == 1) {
@@ -189,15 +202,6 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 			curUnit = 0;
 		}
 	}
-	public void updateCurUnit() {
-		curUnit = -1;
-		for(int i = 0; i < skills.length; i++) {
-			if(choice.equals(skills[i])) {
-				curUnit = i;
-			}
-		}
-	}
-	
 	//for updating the text of all buttons/fields based on local variables.
 	public void updateAllFields() {
 		prompt.setText("Question: What is " + qa[0] + "?");
