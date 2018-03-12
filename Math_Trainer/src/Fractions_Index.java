@@ -114,7 +114,7 @@ public class Fractions_Index extends JFrame implements ActionListener {
 		
 	}
 
-	int[] sessionScore = new int[6];
+	int[] sessionScore = new int[skills.length];
 	String choice = "";
 	int curUnit = 0;
 	public void actionPerformed(ActionEvent e) {
@@ -184,17 +184,22 @@ public class Fractions_Index extends JFrame implements ActionListener {
 	public void updateQuestion() throws FileNotFoundException {
 //		if(choice.equals("Addition/Subtraction")) {
 		if(curUnit == 1) {
-			qa = SurvivalKit_Utilities.getAdditionSubtraction();
+			qa = Fractions_Utilities.getBasicAddSub();
 		}
 		else if(curUnit == 2) {
-			qa = SurvivalKit_Utilities.getMultiplicationDivision();
+			qa = Fractions_Utilities.getLCM();
 		}
 		else if(curUnit == 3) {
-			qa = SurvivalKit_Utilities.getNegative();
+			qa = Fractions_Utilities.getGCF();
 		}
 		else if(curUnit == 4) {
-			qa = SurvivalKit_Utilities.getBEDMAS(bedmasNum);
-			bedmasNum ++;
+			qa = Fractions_Utilities.getAddSub();
+		}
+		else if(curUnit == 5) {
+			qa = Fractions_Utilities.getMultiplication();
+		}
+		else if(curUnit == 6) {
+			qa = Fractions_Utilities.getDivision();
 		}
 		else {
 			qa[0] = "<<Unit not found>>";

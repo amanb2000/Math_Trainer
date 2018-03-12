@@ -1,12 +1,11 @@
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
-public class Fractions_Utilities {
-	int abc;
-	public Fractions_Utilities() {
-		
-		
+public class FractionAddSub {
+
+	public static void main(String[] args) {
+		String[] prob = getBasicAddSub();
+		System.out.println(prob[0] + " = "+prob[1]);
 	}
+
 	/**
 	 * Returns a String[2] containing a same-denominator fraction addition/subtraction problem and its answer.
 	 * @return String[] problem and answer
@@ -46,26 +45,4 @@ public class Fractions_Utilities {
 	public static int gcf(int a, int b) {
 		return b==0 ? a : gcf(b, a%b); 
 	}
-	
-	/**
-	 * This method will 
-	 * @return
-	 */
-	public static String[] getLCM() {
-
-	}
-	public static String[] getGCF() {
-
-	}
-	public static String[] getAddSub() {
-
-	}
-	public static String[] getMultiplication() {
-
-	}
-	public static String[] getDivision() {
-
-	}
-
-	
 }

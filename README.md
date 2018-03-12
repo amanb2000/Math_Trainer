@@ -41,8 +41,10 @@ Basic math training program created by Aman Bhargava and the TCS Academic Suppor
 		- n^x
 	* `FOIL/Why (x+2)^2 != x^2 + 2^2`
 	* `Exponent Laws`
-		- Multiplying
-		- Dividing
+		- Multiplying - Same Base
+		- Dividing - Same Base
+		- Multiplying - Different Bases
+		- Dividing - Different Bases
 		- Negative Exponent
 		- Power of a Power
 		- Power of Zero
