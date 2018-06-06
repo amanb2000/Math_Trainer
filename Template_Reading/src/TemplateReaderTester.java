@@ -23,7 +23,6 @@ public class TemplateReaderTester {
 		ScriptEngineManager mgr = new ScriptEngineManager();
 	    ScriptEngine engine = mgr.getEngineByName("JavaScript");
 	    String foo = "40+2/Math.pow(2, 4)";
-//	    System.out.println(engine.eval(foo));
 	    
 	    ArrayList<char[]> vals = new ArrayList();//['a', '2']
 	    

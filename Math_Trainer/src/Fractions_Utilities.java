@@ -10,6 +10,7 @@ public class Fractions_Utilities {
 	/**
 	 * Returns a String[2] containing a same-denominator fraction addition/subtraction problem and its answer.
 	 * @return String[] problem and answer
+	 * @author Jayden Lefebvre
 	 */
 	public static String[] getBasicAddSub() {
 
@@ -48,24 +49,149 @@ public class Fractions_Utilities {
 	}
 	
 	/**
-	 * This method will 
+	 * TxDO: Get on Traugott's and Gallagher's case about these.
 	 * @return
 	 */
 	public static String[] getLCM() {
-
+		int a = (int)(Math.random()*10) + 1;
+		int b = (int)(Math.random()*10) + 1;
+		
+		int c = (a*b)/gcf(a, b);
+		
+		String question = "LCM of " + a + " and " + b + "?";
+		String answer = c+"";
+		
+		String [] result = {question, answer};//creating question/answer String array
+		
+		return result;//returning question/answer String array.
 	}
 	public static String[] getGCF() {
-
+		int a = (int)(Math.random()*10) + 1;
+		int b = (int)(Math.random()*10) + 1;
+		
+		int c = gcf(a, b);
+		
+		String question = "GCF of " + a + " and " + b + "?";
+		String answer = c+"";
+		
+		String [] result = {question, answer};//creating question/answer String array
+		
+		return result;//returning question/answer String array.
+		
 	}
 	public static String[] getAddSub() {
-
+		//generating numerator and denominator for the first fraction
+		int a=(int)(Math.random()*(10)+1);
+		int b=(int)(Math.random()*(10)+1);
+		while(a==b) {//ensuring that the fraction is not 1/1
+			b=(int)(Math.random()*(10)+1);
+		}
+		//repeating the same process for the second fraction
+		int c=(int)(Math.random()*(10)+1);
+		int d=(int)(Math.random()*(10)+1);
+		while(c==d) {
+			d=(int)(Math.random()*(10)+1);
+		}
+		
+		//creating new instances of the fraction class with each randomly generated number
+		Fraction f1=new Fraction(a,b);
+		Fraction f2=new Fraction(c,d);
+		
+		boolean add = true;
+		if(Math.random() < 0.5) {
+			add = false;
+		}
+		
+		Fraction ans;
+		
+		if(add) {
+			ans=f2.add(f1);//calculating the product
+		}
+		else {
+			ans=f1.subtract(f2);//calculating the product
+		}
+		
+		String question = f1.toString() + " + " + f2.toString();//converting fractions to strings to make question string
+		
+		if(!add) {
+			question = f1.toString() + " - " + f2.toString();//converting fractions to strings to make question string
+		}
+		
+		String answer = ans.toString();//creating answer string
+		
+		String [] result = {question, answer};//creating question/answer String array
+		
+		return result;//returning question/answer String array.
+		//TODO: Make answers that are n/1 just be n
 	}
 	public static String[] getMultiplication() {
-
+		//generating numerator and denominator for the first fraction
+		int a=(int)(Math.random()*(10)+1);
+		int b=(int)(Math.random()*(10)+1);
+		while(a==b) {//ensuring that the fraction is not 1/1
+			b=(int)(Math.random()*(10)+1);
+		}
+		//repeating the same process for the second fraction
+		int c=(int)(Math.random()*(10)+1);
+		int d=(int)(Math.random()*(10)+1);
+		while(c==d) {
+			d=(int)(Math.random()*(10)+1);
+		}
+		
+		//creating new instances of the fraction class with each randomly generated number
+		Fraction f1=new Fraction(a,b);
+		Fraction f2=new Fraction(c,d);
+		Fraction product=f1.multiply(f2);//calculating the product
+		
+		String question = f1.toString() + " * " + f2.toString();//converting fractions to strings to make question string
+		
+		String answer = product.toString();//creating answer string
+		
+		answer  = fixFractionString(answer);
+		
+		String [] result = {question, answer};//creating question/answer String array
+		
+		return result;//returning question/answer String array.
 	}
 	public static String[] getDivision() {
-
+		//generating numerator and denominator for the first fraction
+		int a=(int)(Math.random()*(10)+1);
+		int b=(int)(Math.random()*(10)+1);
+		while(a==b) {//ensuring that the fraction is not 1/1
+			b=(int)(Math.random()*(10)+1);
+		}
+		//repeating the same process for the second fraction
+		int c=(int)(Math.random()*(10)+1);
+		int d=(int)(Math.random()*(10)+1);
+		while(c==d) {
+			d=(int)(Math.random()*(10)+1);
+		}
+		
+		//creating new instances of the fraction class with each randomly generated number
+		Fraction f1=new Fraction(a,b);
+		Fraction f2=new Fraction(c,d);
+		Fraction quotient=f2.divide(f1);//calculating the product
+		
+		String question = f1.toString() + " ÷ " + f2.toString();//converting fractions to strings to make question string
+		
+		String answer = quotient.toString();//creating answer string
+		
+		answer  = fixFractionString(answer);
+		
+		String [] result = {question, answer};//creating question/answer String array
+		
+		return result;//returning question/answer String array.
 	}
-
+	public static String fixFractionString(String fract) {
+		
+		int n = fract.indexOf('/');
+		
+		if(fract.substring(n+1).equals("1")) {
+			return(fract.substring(0, n));
+		}
+		
+		
+		return fract;
+	}
 	
 }

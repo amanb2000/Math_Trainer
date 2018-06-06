@@ -6,22 +6,23 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.awt.Dimension;
 
+import javax.script.ScriptException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Fractions_Index extends JFrame implements ActionListener {
+public class Algebra_1_Index extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	public int superScore = 0;//integer representing the number of skills in which the student has a score of 5 or more in
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Fractions_Index().setVisible(true);
+		new Algebra_1_Index().setVisible(true);
 	}
 	
 	JComboBox<String> skillMenu;
@@ -30,19 +31,15 @@ public class Fractions_Index extends JFrame implements ActionListener {
 	JLabel selectReminder;
 	JLabel progress;
 	
-//	String[] skills = {"Unselected", "Addition/Subtraction", 
-//			"Multiplication/Division", "Negatives", 
-//			"BEDMAS", "Translating Expressions"};
-	String[] skills = {"--Unselected--", "Basic Addition/Subtraction", "LCM", "GCF", "Addition/Subtraction", 
-			"Multiplication", "Division"
+	String[] skills = {"--Unselected--", "Additional Inverse", "Multiplicative Inverse", "Substitution", "Algebra", 
 	};
 	
 	int bedmasNum = (int)(Math.random()*16);
 	
 	String[] qa = {"", ""};
 
-	public Fractions_Index() {
-		super("FRACTIONS - INDEX");
+	public Algebra_1_Index() {
+		super("ALGEBRA I - INDEX");
 		setSize(600, 800);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -54,7 +51,7 @@ public class Fractions_Index extends JFrame implements ActionListener {
 		skillMenu.addActionListener(this);
 		
 		/*Creating all labels, buttons, and menus*/
-		JLabel title = new JLabel("<html><center><h1>Fractions</h1></html>");
+		JLabel title = new JLabel("<html><center><h1>Algebra I</h1></html>");
 		progress = new JLabel("Progress on " + skills[curUnit] + ": "+sessionScore[curUnit]+"/5");
 		
 		prompt = new JLabel("<Question comes here>");//the question
@@ -69,10 +66,8 @@ public class Fractions_Index extends JFrame implements ActionListener {
 		
 		
 		/*Adding all labels, buttons, and menus*/
-		gbc.insets = new Insets(5, 5, 5, 5);//top, left, bottom, right
+		gbc.insets = new Insets(0, 0, 0, 0);//top, left, bottom, right
 	    gbc.anchor = GridBagConstraints.CENTER;
-//		gbc.weightx = 1;
-//		gbc.weighty = 1;
 		
 		gbc.gridx = 1;
 		gbc.gridy = 0;
@@ -96,13 +91,14 @@ public class Fractions_Index extends JFrame implements ActionListener {
 		
 		gbc.gridx = 1;
 		gbc.gridy = 3;
-		gbc.anchor = GridBagConstraints.EAST;
+		gbc.gridwidth = 2;
+		gbc.anchor = GridBagConstraints.CENTER;
 		add(prompt, gbc);
 		
 				
-		gbc.gridx = 2;
-		gbc.gridy = 3;
-		gbc.anchor = GridBagConstraints.WEST;
+		gbc.gridx = 1;
+		gbc.gridy = 5;
+		gbc.anchor = GridBagConstraints.CENTER;
 		add(answerButton, gbc);
 		
 		gbc.gridx = 1;
@@ -114,10 +110,12 @@ public class Fractions_Index extends JFrame implements ActionListener {
 		
 	}
 	
-	int[] sessionScore = new int[skills.length];
+	int[] sessionScore = new int[skills.length]; //array of integers to keep track of the student's score on each exercise in this unit
+	
 	String choice = "";
 	int curUnit = 0;
 	public void actionPerformed(ActionEvent e) {
+		Index.unitScores[0]++;
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("Answer") && !prompt.getText().equals("Please select skill")) {
 			if(!choice.equals("Unselected")) {
@@ -141,7 +139,7 @@ public class Fractions_Index extends JFrame implements ActionListener {
 				
 				try {
 					updateQuestion();
-				} catch (FileNotFoundException e1) {
+				} catch (FileNotFoundException | ScriptException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -158,14 +156,23 @@ public class Fractions_Index extends JFrame implements ActionListener {
 			
 			try {
 				updateQuestion();
-			} catch (FileNotFoundException e1) {
+			} catch (FileNotFoundException | ScriptException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			updateAllFields();
-			System.out.println("QA: " + qa[0] + ", " + qa[1]);
+			
 			
 		}
+		
+		//incrementing superScore
+		superScore = 0;
+		for(int i = 0; i < sessionScore.length; i++) {
+			if(sessionScore[i] >= 5) {
+				superScore ++;
+			}
+		}
+		
 	}
 	/**
 	 * 
@@ -180,36 +187,34 @@ public class Fractions_Index extends JFrame implements ActionListener {
 	/**
 	 * TODO: Update the get expressions
 	 * @throws FileNotFoundException
+	 * String[] skills = {"--Unselected--", "Additional Inverse", "Multiplicative Inverse", "Substitution", "Algebra" };
+	 * @throws ScriptException 
 	 */
-	public void updateQuestion() throws FileNotFoundException {
+	public void updateQuestion() throws FileNotFoundException, ScriptException {
 //		if(choice.equals("Addition/Subtraction")) {
 		if(curUnit == 1) {
-			qa = Fractions_Utilities.getBasicAddSub();
+			qa = Algebra_1_Utilities.getAddInverse();
 		}
 		else if(curUnit == 2) {
-			qa = Fractions_Utilities.getLCM();
+			qa = Algebra_1_Utilities.getMultInverse();
 		}
 		else if(curUnit == 3) {
-			qa = Fractions_Utilities.getGCF();
+			qa = Algebra_1_Utilities.getSubstitution();
 		}
 		else if(curUnit == 4) {
-			qa = Fractions_Utilities.getAddSub();
-		}
-		else if(curUnit == 5) {
-			qa = Fractions_Utilities.getMultiplication();
-		}
-		else if(curUnit == 6) {
-			qa = Fractions_Utilities.getDivision();
+			qa = Algebra_1_Utilities.getAlgebra();
 		}
 		else {
 			qa[0] = "<<Unit not found>>";
 			qa[1] = "<<Unit not found>>";
 			curUnit = 0;
 		}
+		
+		System.out.println("QA: " + qa[0] + ", " + qa[1]);
 	}
 	//for updating the text of all buttons/fields based on local variables.
 	public void updateAllFields() {
-		prompt.setText("Question: " + qa[0]);
+		prompt.setText("<html><b>Question: " + qa[0] + "</b></html>");
 		String progText = "<html>";
 		
 		for(int i = 1; i < skills.length; i++) {

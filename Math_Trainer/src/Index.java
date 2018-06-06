@@ -15,7 +15,6 @@ public class Index extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new Index().setVisible(true);//setting the jFrame to being visible
 	}
 
@@ -25,8 +24,12 @@ public class Index extends JFrame implements ActionListener {
 	
 	JComboBox<String> unitsMenu;
 	
+	JLabel progress;
+	
+	static int[] unitScores = {0,0,0,0};
+	
 	private Index() {
-		super("DOJO SKILL BUILDER - HOME");
+		super("OPTIMUM - HOME");
 		setSize(600, 800);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -35,11 +38,11 @@ public class Index extends JFrame implements ActionListener {
 		
 		
 		/*Creating all labels, buttons, and menus*/
-		JLabel welcome = new JLabel("<html><center><h1>Welcome Home!</h1><br>Please select"
+		JLabel welcome = new JLabel("<html><center><h1>Welcome to Optimum!</h1><br>Please select"
 				+ " the skill you want to practice.</center></html>");//making welcome label
 		
 		String[] unitChoices = { "--Select--", "Survival Kit","Fractions", "Algebra 1",
-				"Exponents","Algebra 2","Algebra 3"};
+				"Exponents"};
 	    unitsMenu = new JComboBox<String>(unitChoices);
 	    unitsMenu.setVisible(true);//menu for selecting units
 	    unitsMenu.addActionListener(this);
@@ -51,8 +54,9 @@ public class Index extends JFrame implements ActionListener {
 	    goButton.addActionListener(this);
 	    goButton.setActionCommand("Go");
 	    
-	    JLabel progress = new JLabel("<html><h3><center>Progress</center></h3><p>Survival Kit 0/5,</p> <p>Fractions: 0/5,</p><p>Algebra 1: 0/5,</p>"
-	    		+ "<p>Exponents: 0/5, </p><p>Algebra 2: 0/5, </p><p>Algebra 3: 0/5</p></html>");
+	    progress = new JLabel("<html><h3><center>Skills</center></h3><p>Survival Kit "+unitScores[0]+"/4,</p> <p>Fractions: "+unitScores[1]+"/6,"
+	    		+ "</p><p>Algebra 1: "+unitScores[2]+"/4,</p>"
+	    		+ "<p>Exponents: "+unitScores[3]+"/4");
 		
 		/*Adding all labels, buttons, and menus to the jFrame*/
 	    gbc.insets = new Insets(5, 5, 5, 5);//top, left, bottom, right
@@ -87,15 +91,27 @@ public class Index extends JFrame implements ActionListener {
 //	@Override
 	String choice = " ";
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("Go") && choice.equals("Survival Kit")) {
 			new SurvivalKit_Index().setVisible(true);
+		}
+		else if(e.getActionCommand().equals("Go") && choice.equals("Fractions")) {
+			new Fractions_Index().setVisible(true);
+		}
+		else if(e.getActionCommand().equals("Go") && choice.equals("Algebra 1")) {
+			new Algebra_1_Index().setVisible(true);
+		}
+		else if(e.getActionCommand().equals("Go") && choice.equals("Exponents")) {
+			new Exponents_Index().setVisible(true);
 		}
 		if(e.getSource() == unitsMenu) {
 			JComboBox bx = (JComboBox)e.getSource();
 			choice = (String)bx.getSelectedItem();
 			System.out.println(choice);
 		}
+		//TODO: Get skill incrementing to work
+		progress.setText("<html><h3><center>Skills:</center></h3><p>Survival Kit "+unitScores[0]+"/5,</p> <p>Fractions: "+unitScores[1]+"/5,</p><p>Algebra 1: "+unitScores[2]+"/5,</p>"
+	    		+ "<p>Exponents: "+unitScores[3]+"/5");
+		
 	}		
 
 }

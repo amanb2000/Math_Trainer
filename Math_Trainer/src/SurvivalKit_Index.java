@@ -20,7 +20,6 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new SurvivalKit_Index().setVisible(true);
 	}
 	
@@ -118,7 +117,6 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 	String choice = "";
 	int curUnit = 0;
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("Answer") && !prompt.getText().equals("Please select skill")) {
 			if(!choice.equals("Unselected")) {
 				if( ans.getText().equals(qa[1]) ) {
@@ -142,7 +140,6 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 				try {
 					updateQuestion();
 				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -159,7 +156,6 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 			try {
 				updateQuestion();
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			updateAllFields();

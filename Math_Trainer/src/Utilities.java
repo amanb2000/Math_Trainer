@@ -25,4 +25,14 @@ public class Utilities {
 		}
 		return data;
 	}
+	
+	public static String removeSpaces(String s) {
+		String retVal = "";
+		for(int i = 0; i < s.length(); i++) {
+			if(s.charAt(i) != ' ') {
+				retVal += s.charAt(i);
+			}
+		}
+		return s;
+	}
 }
