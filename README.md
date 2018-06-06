@@ -1,10 +1,10 @@
-# Math_Trainer
+# OPTIMUM
 Basic math training program created by Aman Bhargava and the TCS Academic Support Department. This is meant to allow students to develop their skills from basic math to the Ontario grade 10 math level.
 
 
-# 2017 October 18 Notes - Harding Meeting (DOJO Planning)
+# 2017 October 18 Notes - Harding Meeting (Planning)
 
-### Units in DOJO
+### Units in OPTIMUM
 
 * 'Survival Kit' - Integers
 	* Addition/subtraction
@@ -50,20 +50,39 @@ Basic math training program created by Aman Bhargava and the TCS Academic Suppor
 		- Power of Zero
 	* `Fractional Exponents`
 
-* Algebra 2 - DOJO 1.0
+* Algebra 2 - DOJO 1.0 (for next year)
 	* More complex algebra (linear equations)
 
-* Algebra 3 - DOJO 1.0
+* Algebra 3 - DOJO 1.0 (for next year)
 	* Even more complex algebra (quadratics)
 
 ### Functionality (MVP, Survival Kit First)
 
-* Create a framework for unit/part of tree to be selected
-* Create methods for getting questions and answers
-* Create a way for students to easily move from one question to the next
+* (Done) Create a framework for unit/part of tree to be selected
+* (Done) Create methods for getting questions and answers
+* (Done) Create a way for students to easily move from one question to the next
+* (Done) Fill out functionality for 4 basic units
+* (Done) 
 * Create a way to record student's activities
+
+### General Guidelines
 
 * Where possible, automate. 
 * Add functionality to add questions required for a unit (i.e. instead of just doing 5, you need to do 10).
 	- Implement a password?
 * Implement a button to reset progress.
+
+### Major TODO's
+
+* Add more obvious feedback for correct/incorrect answers
+* Link to Trinity Academy videos in situ (remove need for secondary resource)
+* Beautify UI
+* Pressure test functionality of existing modules
+* Add Algebra 2-3
+* Add .CSV reading to Algebra 1 Substitution and Solving modules
+
+
+
+
+
+
