@@ -4,7 +4,7 @@ Basic math training program created by Aman Bhargava and the TCS Academic Suppor
 
 # 2017 October 18 Notes - Harding Meeting (Planning)
 
-### Units in OPTIMUM
+### Units in Optimum
 
 * 'Survival Kit' - Integers
 	* Addition/subtraction

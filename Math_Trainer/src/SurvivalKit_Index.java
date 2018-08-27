@@ -12,12 +12,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+
+/**
+ * This is the survivalKit unit index, and it forms the template for how all the unit index work.
+ * It calls the SurvivalKit_Utilities class to generate questions and answers of a given 
+ * type. It then displays the question on the screen and checks if the user's answer is equivalent to the
+ * expected answer. The user's score is incremented/decremented correspondingly.
+ * 
+ * 
+ * @author abhargava
+ *
+ */
 public class SurvivalKit_Index extends JFrame implements ActionListener {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;//JFrame layout tag
 
 	public static void main(String[] args) {
 		new SurvivalKit_Index().setVisible(true);
@@ -25,29 +33,28 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 	
 	JComboBox<String> skillMenu;
 	JTextField ans = new JTextField(10);//textbox for answering questions
-	JLabel prompt;
-	JLabel selectReminder;
-	JLabel progress;
+	JLabel prompt;//Label on screen for the question
+	JLabel selectReminder;//Label that reminds the user to select an option
+	JLabel progress;//Label for the progress that the user has made on each exercise.
 	
-//	String[] skills = {"Unselected", "Addition/Subtraction", 
-//			"Multiplication/Division", "Negatives", 
-//			"BEDMAS", "Translating Expressions"};
 	String[] skills = {"--Unselected--", "Addition/Subtraction", 
 			"Multiplication/Division", "Negatives", 
-			"BEDMAS"};
+			"BEDMAS"};//Possible skills to work on in this unit.
 	
 	int bedmasNum = (int)(Math.random()*16);
 	
-	String[] qa = {"", ""};
+	String[] qa = {"", ""};//The question/answer string array - the 0th string is the question, the 1st string is the answer
 
 	public SurvivalKit_Index() {
-		super("SURVIVAL KIT - INDEX");
+		//Setting up JFrame
+		super("SURVIVAL KIT - INDEX");//setting title
 		setSize(600, 800);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new GridBagLayout());//rows, columns
 		GridBagConstraints gbc = new GridBagConstraints();
 		
+		//creating skill selection menu
 		skillMenu = new JComboBox<String>(skills);
 		skillMenu.setVisible(true);
 		skillMenu.addActionListener(this);
@@ -70,8 +77,6 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 		/*Adding all labels, buttons, and menus*/
 		gbc.insets = new Insets(5, 5, 5, 5);//top, left, bottom, right
 	    gbc.anchor = GridBagConstraints.CENTER;
-//		gbc.weightx = 1;
-//		gbc.weighty = 1;
 		
 		gbc.gridx = 1;
 		gbc.gridy = 0;
@@ -113,10 +118,12 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 		
 	}
 
-	int[] sessionScore = new int[6];
+	int[] sessionScore = new int[6];//array of scores for the current session for each skill
 	String choice = "";
 	int curUnit = 0;
 	public void actionPerformed(ActionEvent e) {
+		//Control flow for seeing if the response was correct and incementing/decrementing the user's score
+		//correspondingly.
 		if(e.getActionCommand().equals("Answer") && !prompt.getText().equals("Please select skill")) {
 			if(!choice.equals("Unselected")) {
 				if( ans.getText().equals(qa[1]) ) {
@@ -163,9 +170,8 @@ public class SurvivalKit_Index extends JFrame implements ActionListener {
 			
 		}
 	}
-	
+	// Method for updating the question and answer using the SurvivalKit_Utilities Class
 	public void updateQuestion() throws FileNotFoundException {
-//		if(choice.equals("Addition/Subtraction")) {
 		if(curUnit == 1) {
 			qa = SurvivalKit_Utilities.getAdditionSubtraction();
 		}

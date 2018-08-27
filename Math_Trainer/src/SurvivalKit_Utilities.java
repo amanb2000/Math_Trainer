@@ -1,11 +1,19 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+
+/**
+ * This is the SurvivalKit_Utilities class and it forms the template for all utilities class.
+ * It is simply a collection of methods that return a string array of length 2, with the first element
+ * being the question and the second element being the answer.
+ * 
+ * 
+ * @author abhargava
+ *
+ */
 public class SurvivalKit_Utilities {
 	int abc;
 	public SurvivalKit_Utilities() {
-		
-		
 	}
 	public static String[] getAdditionSubtraction() {
 		String[] retVal = new String[2];
@@ -13,7 +21,7 @@ public class SurvivalKit_Utilities {
 		int b = (int)(Math.random()*10)+1;
 		double plusminus = (Math.random())-0.5;
 		if(plusminus > 0) {
-			retVal[0] = a + " + " + b;
+			retVal[0] = a + " + " + b; 
 			retVal[1] = ""+(a+b);
 		}
 		else {
